@@ -21,6 +21,8 @@ module "alb" {
   target_group_weights      = var.target_group_weights
   validate_certificates     = var.validate_certificates
   vpc                       = module.network.vpc
+
+  depends_on = [module.network]
 }
 
 module "network" {
@@ -28,6 +30,8 @@ module "network" {
 
   alarm_topic_name = var.alarm_topic_name
   tags             = merge(local.cluster_tags, var.network_tags)
+
+  depends_on = [module.cluster_name]
 }
 
 module "cluster_name" {
