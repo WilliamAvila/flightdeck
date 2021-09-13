@@ -18,6 +18,44 @@ custom:
     as: "${1}_${2}"
   metricsQuery: (sum(irate(<<.Series>>{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>))
 
+# Expose any recorded metrics following the standard job convention
+- seriesQuery: '{__name__=~"^deploy:.*:.*$",job!=""}'
+  resources:
+    overrides:
+      namespace:
+        resource: namespace
+      job:
+        group: apps
+        resource: deployment
+  name:
+    matches: "^deploy:([^:]*):([^:]*)$"
+    as: "${1}_${2}"
+  metricsQuery: (sum(irate(<<.Series>>{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>))
+- seriesQuery: '{__name__=~"^ds:.*:.*$",job!=""}'
+  resources:
+    overrides:
+      namespace:
+        resource: namespace
+      job:
+        group: apps
+        resource: daemonset
+  name:
+    matches: "^ds:([^:]*):([^:]*)$"
+    as: "${1}_${2}"
+  metricsQuery: (sum(irate(<<.Series>>{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>))
+- seriesQuery: '{__name__=~"^sts:.*:.*$",job!=""}'
+  resources:
+    overrides:
+      namespace:
+        resource: namespace
+      job:
+        group: apps
+        resource: statefulset
+  name:
+    matches: "^sts:([^:]*):([^:]*)$"
+    as: "${1}_${2}"
+  metricsQuery: (sum(irate(<<.Series>>{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>))
+
 # Expose total requests (ie istio_requests_total)
 - seriesQuery: '{__name__=~".*_requests_total$",pod!=""}'
   resources:
