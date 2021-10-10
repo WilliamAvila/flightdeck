@@ -43,6 +43,7 @@ module "cert_manager" {
 }
 
 module "cluster_autoscaler" {
+  count  = var.cluster_autoscaler_enabled ? 1 : 0
   source = "../../common/cluster-autoscaler"
 
   chart_values  = var.cluster_autoscaler_values
@@ -51,9 +52,8 @@ module "cluster_autoscaler" {
 }
 
 module "external_dns" {
+  count  = var.external_dns_enabled ? 1 : 0
   source = "../../common/external-dns"
-
-  count = var.external_dns_enabled ? 1 : 0
 
   chart_values  = var.external_dns_values
   chart_version = var.external_dns_version
@@ -61,6 +61,7 @@ module "external_dns" {
 }
 
 module "fluent_bit" {
+  count  = var.fluent_bit_enabled ? 1 : 0
   source = "../../common/fluent-bit"
 
   chart_values                  = var.fluent_bit_values
@@ -146,6 +147,7 @@ module "secret_store_driver" {
 }
 
 module "metrics_server" {
+  count  = var.metrics_server_enabled ? 1 : 0
   source = "../../common/metrics-server"
 
   chart_values  = var.metrics_server_values

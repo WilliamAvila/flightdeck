@@ -16,6 +16,12 @@ variable "certificate_issuer" {
   default     = null
 }
 
+variable "cluster_autoscaler_enabled" {
+  description = "Set to false to disable the Helm chart"
+  type        = bool
+  default     = true
+}
+
 variable "cluster_autoscaler_values" {
   description = "Overrides to pass to the Helm chart"
   type        = list(string)
@@ -70,6 +76,12 @@ variable "flightdeck_prometheus_values" {
   default     = []
 }
 
+variable "fluent_bit_enabled" {
+  description = "Set to false to disable the Helm chart"
+  type        = bool
+  default     = true
+}
+
 variable "fluent_bit_enable_kubernetes_annotations" {
   description = "Set to true to add Kubernetes annotations to log output"
   type        = bool
@@ -116,6 +128,12 @@ variable "istio_version" {
   type        = string
   description = "Version of Istio to install"
   default     = null
+}
+
+variable "metrics_server_enabled" {
+  description = "Set to false to disable the Helm chart"
+  type        = bool
+  default     = true
 }
 
 variable "metrics_server_values" {
