@@ -10,8 +10,7 @@ certificate:
   issuer:
     create: true
     name: flightdeck
-    spec:
-      selfSigned: {}
+    spec: {}
 
 gateway:
   requireTLS: true
