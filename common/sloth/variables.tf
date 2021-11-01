@@ -7,7 +7,7 @@ variable "chart_name" {
 variable "chart_repository" {
   type        = string
   description = "Helm repository containing the chart"
-  default     = "https://github.com/slok/sloth.git//deploy/kubernetes/helm?ref=v0.8.0"
+  default     = "https://flightdeck-charts.s3.amazonaws.com/sloth"
 }
 
 variable "sloth_version" {
