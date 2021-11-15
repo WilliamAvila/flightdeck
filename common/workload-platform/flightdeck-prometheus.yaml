@@ -8,6 +8,7 @@ prometheus:
         labelSelector: 
           matchLabels: 
             prometheus: flightdeck-prometheus
+    replicaExternalLabelName: ""
 podMonitors:
 - name: envoy-stats-monitor
   additionalLabels:
