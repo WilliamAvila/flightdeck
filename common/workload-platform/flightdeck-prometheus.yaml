@@ -1,5 +1,15 @@
 prometheus:
   spec:
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          preference:
+            matchExpressions:
+            - key: node.kubernetes.io/instance-type
+              operator: In
+              values:
+              - m5.large
     replicas: 2
     topologySpreadConstraints:
       - maxSkew: 1
