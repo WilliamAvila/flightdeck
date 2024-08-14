@@ -48,7 +48,7 @@ module "node_groups" {
   role           = module.node_role.instance
   subnets        = values(data.aws_subnet.private)
   tags           = var.tags
-  user_data      = var.user_data
+  user_data      = lookup(var.user_data, each.key, null)
 
   depends_on = [module.node_role]
 }

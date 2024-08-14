@@ -43,7 +43,7 @@ variable "tags" {
 }
 
 variable "user_data" {
-  type        = string
+  type        = map(string)
   description = "Optional user data script for the launch template"
-  default     = null # Default to an empty string if no user data is provided
+  default     = {} # Default to an empty string if no user data is provided
 }
