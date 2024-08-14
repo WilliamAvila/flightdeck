@@ -41,3 +41,9 @@ variable "tags" {
   description = "Tags to be applied to all created resources"
   default     = {}
 }
+
+variable "user_data" {
+  type        = string
+  description = "Optional user data script for the launch template"
+  default     = null # Default to an empty string if no user data is provided
+}
